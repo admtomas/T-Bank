@@ -11,7 +11,8 @@ environ.Env.read_env()
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
+        # 'NAME': 'postgres',
+        'NAME': 'T_BANK',
         'USER': env('DATABASE_USER'),
         'PASSWORD': env('DATABASE_PASSWORD'),
         'HOST': 'localhost',

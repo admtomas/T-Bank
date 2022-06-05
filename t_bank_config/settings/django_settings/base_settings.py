@@ -9,22 +9,24 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-# ---- DJANGO ENVIRON ----
+
 import environ
 import os
-# Initialise environment variables
-env = environ.Env()
-environ.Env.read_env()
-
 from pathlib import Path
 
-
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
+# ---- DJANGO ENVIRON ----
+# Initialise environment variables
+env = environ.Env()
+
+# Take environment variables from .env file
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+#environ.Env.read_env()
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
@@ -54,7 +56,7 @@ ROOT_URLCONF = 't_bank_config.urls'
 # https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
 WSGI_APPLICATION = 't_bank_config.wsgi.application'
 
-# Load Page after successfull log-in
+# ---- Load Page after successful log-in
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
